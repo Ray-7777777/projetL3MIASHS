@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AngularJS App</title>
+  <!-- Include AngularJS via a CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <!-- Include MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="script.js"></script>
+</head>
+<body ng-app="myApp">
+
+  <div ng-controller="AppController as ctrl">
+    <h1>LaTeX Display</h1>
+    <div>
+        <h2>Rendered Equation:</h2>
+        <div id="output" ng-bind-html="renderedEquation">
+          <!-- LaTeX equations will be rendered here -->
+        </div>
+      </div>
+    <div>
+      <label for="input">Enter your LaTeX equation:</label>
+      <input type="text" id="input" ng-model="ctrl.equation" ng-change="ctrl.renderEquation()">
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+  
+  label {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  #input {
+    font-size: 18px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
+  #output {
+    font-size: 18px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    min-height: 50px;
+    margin-top: 10px;
+    box-sizing: border-box;
+  }
+/* CSS for Login and Register buttons */
+.login-register-buttons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.login-register-buttons button {
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: #007bff; /* Couleur de fond bleue */
+  color: #fff; /* Texte blanc */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-register-buttons button:hover {
+  background-color: #0056b3; /* Changement de couleur au survol */
+}

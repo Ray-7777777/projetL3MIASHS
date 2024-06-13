@@ -1,0 +1,32 @@
+<div>
+  <h1>LaTeX Display</h1>
+  <div>
+    <h2>Rendered Equation:</h2>
+    <div [innerHTML]="renderedEquation">
+      <!-- LaTeX equations will be rendered here -->
+    </div>
+  </div>
+  <div>
+    <label for="input">Enter your LaTeX equation:</label>
+    <input type="text" id="input" [(ngModel)]="equation" (ngModelChange)="renderEquation()">
+  </div>
+  <button (click)="saveEquation()">Enregistrer</button>
+  <div *ngIf="saveMessage" class="save-message">{{ saveMessage }}</div>
+  <div>
+    <label for="equations">choose a formula:</label>
+    <select id="equations" [(ngModel)]="selectedEquation" (change)="selectEquation()">
+      <option *ngFor="let equation of equations" [value]="equation.equation">{{ equation.equation }}</option>
+    </select>
+  </div>
+  <div *ngFor="let equation of equations">
+    <div>{{ equation.equation }}</div>
+    <button (click)="selectEquation(equation.equation)">Sélectionner</button>
+    <button (click)="deleteEquation(equation.id)">Supprimer</button>
+  </div>
+    <!-- New buttons for login and register -->
+    <div class="login-register-buttons">
+      <button (click)="navigateToLogin()">Login</button>
+      <button (click)="navigateToRegister()">Register</button>
+    </div>
+    
+</div>

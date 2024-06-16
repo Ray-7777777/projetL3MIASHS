@@ -1,5 +1,6 @@
-Dans angular-app/src/app/app.config.ts, vous devez mettre votre configuration Firebase, sinon toutes les fonctionnalités nécessitant une base de données ne fonctionneront pas.
 For english go see README.md/Pour anglais aller voir README.md
+
+Dans angular-app/src/app/app.config.ts, vous devez mettre votre configuration Firebase, sinon toutes les fonctionnalités nécessitant une base de données ne fonctionneront pas.
 
 # Presentation
 Cette application web est issue d'un projet scolaire et est une première utilisation d'Angular qui permet de rendre des équa-

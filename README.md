@@ -125,3 +125,63 @@ The Login component allows users to log in by verifying their credentials agains
 
 **logout**: This function redirects the user to the latex-renderer component.
 
+**Component: TeacherDashboard**
+
+The TeacherDashboard component allows teachers to manage LaTeX equations. They can add new equations, view unresolved and resolved ones, and delete equations. All operations are synchronized with Firestore, and MathJax is used for rendering LaTeX equations.
+
+**Variables**:
+
+- equation: Stores the LaTeX equation entered by the user.
+- renderedEquation: Stores the equation rendered as HTML.
+- selectedEquation: Stores the selected equation for display.
+- equations: List of equations created by the user.
+- resolvedEquations: List of equations resolved by students.
+- firestore: Instance of Firestore for database operations.
+- router: Instance of Angular Router for navigation.
+- saveMessage: Message to display the status of saving.
+- userId: ID of the currently logged-in user.
+- mathJaxConfig: MathJax configuration (not used in this example).
+- equationsLoaded: Indicator to know if equations are loaded.
+
+**Functions**:
+
+- ngOnInit: This function initializes MathJax and retrieves the user's equations.
+- ngAfterViewChecked: Ensures MathJax re-renders equations after each view check.
+- ngOnDestroy: Cleans up MathJax when the component is destroyed.
+- logout: Logs the user out and redirects to the latex-renderer component.
+- loadMathJax: Loads necessary scripts for MathJax.
+- unloadMathJax: Unloads MathJax scripts from the document.
+- renderEquation: Renders the LaTeX equation entered by the user as secure HTML.
+- saveEquation: Saves a new equation to Firestore.
+- deleteEquation: Deletes an equation from Firestore.
+- updateAnswer: Updates the answer to an equation in Firestore.
+- getEquations: Retrieves equations created by the user and their corresponding responses from Firestore.
+
+---
+
+**Component: StudentDashboard**
+
+The StudentDashboard component allows students to manage and solve mathematical equations created by teachers. Students can view equations, submit their answers, and see equations they have resolved. The component uses MathJax for rendering LaTeX mathematical equations and Firestore for data storage and management.
+
+**Variables**:
+
+- equations: List of unresolved equations for the student.
+- resolvedEquations: List of equations resolved by the student.
+- firestore: Instance of Firestore for database operations.
+- router: Instance of Angular Router for navigation.
+- userId: ID of the currently logged-in user.
+- equationsLoaded: Indicator to know if equations are loaded.
+
+**Functions**:
+
+- ngOnInit: Initializes MathJax and retrieves both unresolved and resolved equations.
+- ngAfterViewChecked: Ensures MathJax re-renders equations after each view check.
+- ngOnDestroy: Cleans up MathJax when the component is destroyed.
+- logout: Logs the user out and redirects to the latex-renderer component.
+- loadMathJax: Loads necessary scripts for MathJax.
+- unloadMathJax: Unloads MathJax scripts from the document.
+- getEquations: Retrieves unresolved equations from Firestore.
+- getResolvedEquations: Retrieves equations resolved by the student from Firestore.
+- checkAnswer: Checks the student's answer for a given equation. If the answer is correct, marks the equation as resolved in Firestore. If incorrect, increments the attempt count and shows an error message after three failed attempts.
+
+

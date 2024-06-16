@@ -131,3 +131,62 @@ Le composant Login permet aux utilisateurs de se connecter en vérifiant leurs i
 - Si le nom d'utilisateur ou le mot de passe est incorrect, un message d'erreur est affiché.
 
 **logout** : Cette fonction redirige l'utilisateur vers le composant latex-renderer.
+
+**Composant : TeacherDashboard**
+
+Le composant TeacherDashboard permet aux enseignants de gérer les équations LaTeX. Ils peuvent ajouter de nouvelles équations, visualiser celles qui sont non résolues et celles qui ont été résolues, ainsi que supprimer des équations. Toutes les opérations sont synchronisées avec Firestore et MathJax est utilisé pour le rendu des équations LaTeX.
+
+**Variables** :
+
+- equation : Stocke l'équation LaTeX saisie par l'utilisateur.
+- renderedEquation : Stocke l'équation rendue en HTML.
+- selectedEquation : Stocke l'équation sélectionnée pour affichage.
+- equations : Liste des équations créées par l'utilisateur.
+- resolvedEquations : Liste des équations résolues par les étudiants.
+- firestore : Instance de Firestore pour les opérations de base de données.
+- router : Instance du routeur Angular pour la navigation.
+- saveMessage : Message pour afficher le statut de l'enregistrement.
+- userId : Identifiant de l'utilisateur connecté.
+- mathJaxConfig : Configuration de MathJax (non utilisée dans cet exemple).
+- equationsLoaded : Indicateur pour savoir si les équations sont chargées.
+
+**Fonctions** :
+
+- ngOnInit : Cette fonction charge MathJax et récupère les équations de l'utilisateur à l'initialisation du composant.
+- ngAfterViewChecked : Cette fonction s'assure que MathJax re-render les équations après chaque vérification de la vue.
+- ngOnDestroy : Cette fonction décharge MathJax lorsque le composant est détruit.
+- logout : Cette fonction permet à l'utilisateur de se déconnecter et de rediriger vers le composant latex-renderer.
+- loadMathJax : Cette fonction charge les scripts nécessaires pour MathJax.
+- unloadMathJax : Cette fonction retire les scripts MathJax du document.
+- renderEquation : Cette fonction rend l'équation saisie par l'utilisateur en HTML sécurisé.
+- saveEquation : Cette fonction sauvegarde une nouvelle équation dans Firestore.
+- deleteEquation : Cette fonction supprime une équation de Firestore.
+- updateAnswer : Cette fonction met à jour la réponse à une équation dans Firestore.
+- getEquations : Cette fonction récupère les équations créées par l'utilisateur et les réponses correspondantes depuis Firestore.
+
+---
+
+**Composant : StudentDashboard**
+
+Le composant StudentDashboard permet aux étudiants de gérer et de résoudre des équations mathématiques créées par les enseignants. Les étudiants peuvent visualiser les équations, soumettre leurs réponses, et voir les équations qu'ils ont résolues. Le composant utilise MathJax pour le rendu des équations mathématiques en LaTeX et Firestore pour le stockage et la gestion des données.
+
+**Variables** :
+
+- equations : Liste des équations non résolues pour l'étudiant.
+- resolvedEquations : Liste des équations résolues par l'étudiant.
+- firestore : Instance de Firestore pour les opérations de base de données.
+- router : Instance du routeur Angular pour la navigation.
+- userId : Identifiant de l'utilisateur connecté.
+- equationsLoaded : Indicateur pour savoir si les équations sont chargées.
+
+**Fonctions** :
+
+- ngOnInit : Cette fonction charge MathJax et récupère les équations ainsi que les équations résolues à l'initialisation du composant.
+- ngAfterViewChecked : Cette fonction s'assure que MathJax re-render les équations après chaque vérification de la vue.
+- ngOnDestroy : Cette fonction décharge MathJax lorsque le composant est détruit.
+- logout : Cette fonction permet à l'utilisateur de se déconnecter et de rediriger vers le composant latex-renderer.
+- loadMathJax : Cette fonction charge les scripts nécessaires pour MathJax.
+- unloadMathJax : Cette fonction retire les scripts MathJax du document.
+- getEquations : Cette fonction récupère les équations non résolues depuis Firestore.
+- getResolvedEquations : Cette fonction récupère les équations résolues par l'étudiant depuis Firestore.
+- checkAnswer : Cette fonction vérifie la réponse de l'étudiant pour une équation donnée. Si la réponse est correcte, l'équation est marquée comme résolue dans Firestore. Si la réponse est incorrecte, le nombre de tentatives est incrémenté et un message d'erreur est affiché après trois tentatives échouées.

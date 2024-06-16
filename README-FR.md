@@ -44,36 +44,12 @@ npm install @angular/platform-browser @angular/common @angular/forms @angular/ro
 
 # Présentation de chaque composant et de leurs fonctions :
 
-Composant \texttt{latex-renderer}}
-Le composant \texttt{LatexRenderercomposant} permet de saisir, rendre et gérer des équations LaTeX. Il intègre MathJax pour le rendu des équations, et utilise Firestore pour stocker et gérer les équations. Les utilisateurs peuvent enregistrer de nouvelles équations, les sélectionner pour les rendre à nouveau, et supprimer des équations existantes.
-\subsubsection{Code du Composant}
-\begin{verbatim}
-import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor } from '@angular/common';
-import { Firestore, collection, addDoc, deleteDoc, doc, getDocs } from '@angular/fire/firestore';
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+Composant latex-renderer:
 
-declare var MathJax: any;
-\end{verbatim}
-Importations et Déclarations: Ces lignes importent les modules nécessaires pour le fonctionnement du composant. MathJax est utilisé pour le rendu des équations LaTeX.
+Le composant LatexRenderer permet de saisir, rendre et gérer des équations LaTeX. Il intègre MathJax pour le rendu des équations, et utilise Firestore pour stocker et gérer les équations. Les utilisateurs peuvent enregistrer de nouvelles équations, les sélectionner pour les rendre à nouveau, et supprimer des équations existantes.
 
-\begin{verbatim}
-@Component({
-  selector: 'app-latex-renderer',
-  standalone: true,
-  imports: [FormsModule, NgIf, NgFor, CommonModule],
-  templateUrl: './latex-renderer.component.html',
-  styleUrls: ['./latex-renderer.component.css']
-})
-export class LatexRendererComponent implements OnInit {
-\end{verbatim}
-Déclaration du Composant: Cette section définit le composant, ses métadonnées, et ses dépendances.
+Variables et Constructeur:
 
-\begin{verbatim}
   equation: string = '';
   renderedEquation: SafeHtml = '';
   selectedEquation: string = '';
@@ -83,9 +59,7 @@ Déclaration du Composant: Cette section définit le composant, ses métadonnée
   saveMessage: string = '';
 
   constructor(private sanitizer: DomSanitizer) {}
-
-\end{verbatim}
-Variables et Constructeur:
+  
 equation: Stocke l'équation actuelle saisie par l'utilisateur.
 
 renderedEquation: Stocke l'équation rendue sous forme de HTML sécurisé.
@@ -100,12 +74,12 @@ router: Instance du routeur Angular pour la navigation.
 
 saveMessage: Message pour afficher le statut des opérations de sauvegarde ou de suppression.
 
-\begin{verbatim}
+
   async ngOnInit(): Promise<void> {
     this.loadMathJax();
     this.equations = await this.getEquations();
   }
-\end{verbatim}
+  
 ngOnInit:Cette fonction est appelée lors de l'initialisation du composant. Elle charge MathJax pour le rendu des équations et récupère les équations stockées dans Firestore.
 
 \begin{verbatim}

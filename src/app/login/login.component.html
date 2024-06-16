@@ -1,0 +1,14 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <label for="id">ID:</label>
+  <input type="text" id="id" [(ngModel)]="id">
+  <br>
+  <label for="password">Password:</label>
+  <input type="password" id="password" [(ngModel)]="password">
+  <br>
+  <button (click)="login()">Login</button>
+  <div *ngIf="loginMessage" class="login-message">{{ loginMessage }}</div>
+</div>
+<div class="return-button">
+  <button (click)="logout()">Return</button>
+</div>

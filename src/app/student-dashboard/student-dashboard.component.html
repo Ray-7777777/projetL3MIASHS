@@ -1,0 +1,31 @@
+<div>
+  <h1>Student Dashboard</h1>
+  <div>
+    <h2><label for="equations">Teacher questions:</label></h2>
+  </div>
+
+  <!-- Afficher un message s'il n'y a pas d'équations disponibles -->
+  <div *ngIf="equations.length === 0">
+    <p>Il n'y a actuellement aucune question non résolue.</p>
+  </div>
+
+  <!-- Afficher les équations si disponibles -->
+  <div *ngFor="let equation of equations" class="question">
+    <div [innerHTML]="'$$' + equation.equation + '$$'"></div>
+    <div class="answer">
+      <label for="answer">Your answer:</label>
+      <input type="text" [(ngModel)]="equation.userAnswer">
+      <button (click)="checkAnswer(equation)">Submit</button>
+    </div>
+  </div>
+
+  <h2>Questions answered correctly</h2>
+  <div *ngFor="let resolved of resolvedEquations">
+    <div [innerHTML]="'$$' + resolved.equation + '$$'"></div>
+    <div>Created by: {{ resolved.createdBy }}</div>
+  </div>
+
+  <div class="logout-button">
+    <button (click)="logout()">Logout</button>
+  </div>
+</div>

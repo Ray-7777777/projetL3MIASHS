@@ -1,0 +1,39 @@
+<div>
+  <h1>Teacher Dashboard</h1>
+  <div>
+    <div [innerHTML]="renderedEquation">
+      <!-- LaTeX equations will be rendered here -->
+    </div>
+  </div>
+  <div>
+    <label for="input">Enter your question to send it to every student account:</label>
+    <input type="text" id="input" [(ngModel)]="equation" (ngModelChange)="renderEquation()">
+  </div>
+  <button (click)="saveEquation()">Save</button>
+  <div *ngIf="saveMessage" class="save-message">{{ saveMessage }}</div>
+  <div>
+    <h2><label for="equations">Your questions:</label></h2>
+    <a>You must save an answer for a question to be send to the student</a>
+  </div>
+  <div *ngFor="let equation of equations" class="question">
+    <div [innerHTML]="'$$' + equation.equation + '$$'"></div>
+    <button (click)="deleteEquation(equation.id)">Delete</button>
+    <div class="answer">
+      <label for="answer">Enter the answer:</label>
+      <input type="text" [(ngModel)]="equation.answer">
+      <button (click)="updateAnswer(equation.id, equation.answer)">Save the answer</button>
+    </div>
+  </div>
+  <div>
+    <h2>Questions answered</h2>
+    <div *ngFor="let resolved of resolvedEquations">
+      <div>
+        <span>Solved by: {{ resolved.resolvedBy }}</span>
+        <div [innerHTML]="'$$' + resolved.equation + '$$'"></div>
+      </div>
+    </div>
+  </div>
+  <div class="logout-button">
+    <button (click)="logout()">Logout</button>
+  </div>
+</div>

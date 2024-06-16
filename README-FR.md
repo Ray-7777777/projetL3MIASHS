@@ -85,62 +85,49 @@ navigateToLogin:Cette fonction permet de naviguer vers la page de connexion.
 navigateToRegister:Cette fonction permet de naviguer vers la page d'inscription.
 
 
-**Composant register**:
-Le composant Register permet aux utilisateurs de créer un compte en vérifiant que les champs nécessaires sont remplis, en hachant le mot de passe pour des raisons de sécurité, et en stockant les informations dans Firestore. Après une inscription réussie, l'utilisateur est automatiquement connecté et redirigé vers le tableau de bord approprié en fonction de son type de compte.
+**Composant : Register**
 
-***Variables***:
-id: Stocke l'identifiant choisi par l'utilisateur.
+Le composant Register permet aux utilisateurs de créer un compte en vérifiant les champs requis, en hachant le mot de passe pour des raisons de sécurité, et en stockant les informations dans Firestore. Après une inscription réussie, l'utilisateur est automatiquement connecté et redirigé vers le tableau de bord approprié en fonction de son type de compte.
 
-password: Stocke le mot de passe choisi par l'utilisateur.
+**Variables** :
+- id : Stocke le nom d'utilisateur choisi par l'utilisateur.
+- password : Stocke le mot de passe choisi par l'utilisateur.
+- accountType : Définit le type de compte (par défaut, 'student').
+- registerMessage : Message pour afficher le statut de l'inscription.
+- firestore : Instance de Firestore pour les opérations de base de données.
+- router : Instance du routeur Angular pour la navigation.
 
-accountType: Définit le type de compte (par défaut, 'student').
+**Fonctions** :
 
-registerMessage: Message pour afficher le statut de l'inscription.
+**register** : Cette fonction gère le processus d'inscription :
+- Elle vérifie que les champs id et password ne sont pas vides.
+- Elle hache le mot de passe avant de le stocker dans Firestore.
+- Elle enregistre les informations de l'utilisateur (id, mot de passe haché, type de compte) dans Firestore.
+- Si l'inscription est réussie, elle affiche un message de succès et redirige automatiquement l'utilisateur vers le tableau de bord approprié.
+- Si une erreur survient, elle affiche un message d'erreur.
 
-firestore: Instance de Firestore pour les opérations de base de données.
+**logout** : Cette fonction redirige l'utilisateur vers le composant latex-renderer.
 
-router: Instance du routeur Angular pour la navigation.
+---
 
-***Fonctions***:
+**Composant : Login**
 
-register:Cette fonction gère le processus d'inscription :
+Le composant Login permet aux utilisateurs de se connecter en vérifiant leurs identifiants avec ceux stockés dans Firestore. Il compare les mots de passe de manière sécurisée à l'aide de bcrypt et redirige les utilisateurs vers le tableau de bord approprié en fonction de leur type de compte (enseignant ou étudiant).
 
-Elle vérifie que les champs id et password ne sont pas vides.
+**Variables** :
+- id : Stocke le nom d'utilisateur de l'utilisateur.
+- password : Stocke le mot de passe de l'utilisateur.
+- loginMessage : Message pour afficher le statut de la connexion.
+- firestore : Instance de Firestore pour les opérations de base de données.
+- router : Instance du routeur Angular pour la navigation.
 
-Elle hache le mot de passe avant de le stocker dans Firestore.
+**Fonctions** :
 
-Elle enregistre les informations de l'utilisateur (identifiant, mot de passe haché, type de compte) dans Firestore.
+**login** : Cette fonction vérifie les identifiants de l'utilisateur :
+- Elle récupère tous les documents de la collection 'users' dans Firestore.
+- Elle compare le nom d'utilisateur fourni avec ceux stockés.
+- Si un nom d'utilisateur correspondant est trouvé, elle compare le mot de passe haché.
+- Si la comparaison est réussie, elle stocke les informations de l'utilisateur dans localStorage et redirige l'utilisateur vers le tableau de bord approprié.
+- Si le nom d'utilisateur ou le mot de passe est incorrect, un message d'erreur est affiché.
 
-Si l'inscription est réussie, elle affiche un message de succès et redirige automatiquement l'utilisateur vers le tableau de bord approprié.
-
-Si une erreur se produit, elle affiche un message d'erreur.
-
-logout:Cette fonction permet de rediriger l'utilisateur vers le composant latex-renderer.
-
-**Composant login**:
-Le composant Login permet aux utilisateurs de se connecter en vérifiant leurs identifiants avec ceux stockés dans Firestore. Il utilise bcrypt pour comparer les mots de passe de manière sécurisée et redirige les utilisateurs vers le tableau de bord approprié en fonction de leur type de compte (enseignant ou étudiant).
-
-***Variables***:
-id: Stocke l'identifiant de l'utilisateur.
-
-password: Stocke le mot de passe de l'utilisateur.
-
-loginMessage: Message pour afficher le statut de la connexion.
-
-firestore: Instance de Firestore pour les opérations de base de données.
-
-router: Instance du routeur Angular pour la navigation.
-
-***Fonctions***:
-
-login:Cette fonction vérifie les identifiants de l'utilisateur :
-
-Elle récupère tous les documents de la collection users dans Firestore.
-Elle compare l'identifiant fourni avec les identifiants stockés.
-Si un identifiant correspondant est trouvé, elle compare le mot de passe haché.
-Si la comparaison réussit, elle stocke les informations de l'utilisateur dans le localStorage et redirige l'utilisateur vers le tableau de bord approprié.
-Si l'identifiant ou le mot de passe est incorrect, un message d'erreur est affiché.
-
-logout:Cette fonction permet de rediriger l'utilisateur vers le composant latex-renderer.
-
-
+**logout** : Cette fonction redirige l'utilisateur vers le composant latex-renderer.

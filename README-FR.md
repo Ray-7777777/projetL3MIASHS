@@ -19,8 +19,13 @@ enseignant : Tableau de bord pour les enseignants et les étudiants, permettant 
 résolution d’équations.
 
 # npm install que vous devez effectuer pour que cette application fonctionne:
+
 npm install -g @angular/cli   # Installer Angular CLI globalement
+
 ng add @angular/material      # Installer Angular Material (optionnel)
+
 npm install firebase @angular/fire  # Installer Firebase pour Angular
+
 npm install bcryptjs          # Installer bcrypt.js pour le hachage de mot de passe
+
 npm install @angular/platform-browser @angular/common @angular/forms @angular/router  # Installer les dépendances Angular nécessaires

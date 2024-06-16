@@ -5,7 +5,13 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 const firebaseConfig = {
-  
+    apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId:""
 };
 
 export const appConfig: ApplicationConfig = {

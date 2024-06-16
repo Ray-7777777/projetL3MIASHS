@@ -38,7 +38,7 @@ npm install @angular/platform-browser @angular/common @angular/forms @angular/ro
 
 # Component Overview and Functions:
 
-## LatexRenderer Component:
+## Component:LatexRenderer
 
 The LatexRenderer component facilitates inputting, rendering, and managing LaTeX equations. It integrates MathJax for equation rendering and utilizes Firestore for storing and managing equations. Users can save new equations, select them for re-rendering, and delete existing equations.
 
@@ -77,3 +77,51 @@ selectEquation: Allows selecting and rendering a specific equation.
 navigateToLogin: Navigates to the login page.
 
 navigateToRegister: Navigates to the registration page.
+
+## Component: Register
+
+The Register component allows users to create an account by verifying required fields, hashing the password for security reasons, and storing the information in Firestore. Upon successful registration, the user is automatically logged in and redirected to the appropriate dashboard based on their account type.
+
+**Variables**:
+- id: Stores the chosen username by the user.
+- password: Stores the chosen password by the user.
+- accountType: Defines the account type (default is 'student').
+- registerMessage: Message to display the registration status.
+- firestore: Instance of Firestore for database operations.
+- router: Instance of Angular Router for navigation.
+
+**Functions**:
+
+**register**: This function manages the registration process:
+- It checks that the id and password fields are not empty.
+- It hashes the password before storing it in Firestore.
+- It saves the user's information (id, hashed password, account type) in Firestore.
+- If registration is successful, it displays a success message and automatically redirects the user to the appropriate dashboard.
+- If an error occurs, it displays an error message.
+
+**logout**: This function redirects the user to the latex-renderer component.
+
+---
+
+## Component: Login
+
+The Login component allows users to log in by verifying their credentials against those stored in Firestore. It securely compares passwords using bcrypt and redirects users to the appropriate dashboard based on their account type (teacher or student).
+
+**Variables**:
+- id: Stores the user's username.
+- password: Stores the user's password.
+- loginMessage: Message to display the login status.
+- firestore: Instance of Firestore for database operations.
+- router: Instance of Angular Router for navigation.
+
+**Functions**:
+
+**login**: This function verifies the user's credentials:
+- It retrieves all documents from the 'users' collection in Firestore.
+- It compares the provided username with the stored usernames.
+- If a matching username is found, it compares the hashed password.
+- If the comparison is successful, it stores the user's information in localStorage and redirects the user to the appropriate dashboard.
+- If the username or password is incorrect, an error message is displayed.
+
+**logout**: This function redirects the user to the latex-renderer component.
+

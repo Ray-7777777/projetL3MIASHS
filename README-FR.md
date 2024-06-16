@@ -48,7 +48,7 @@ npm install @angular/platform-browser @angular/common @angular/forms @angular/ro
 
 Le composant LatexRenderer permet de saisir, rendre et gérer des équations LaTeX. Il intègre MathJax pour le rendu des équations, et utilise Firestore pour stocker et gérer les équations. Les utilisateurs peuvent enregistrer de nouvelles équations, les sélectionner pour les rendre à nouveau, et supprimer des équations existantes.
 
-Variables :
+***Variables*** :
   
 equation: Stocke l'équation actuelle saisie par l'utilisateur.
 
@@ -64,7 +64,7 @@ router: Instance du routeur Angular pour la navigation.
 
 saveMessage: Message pour afficher le statut des opérations de sauvegarde ou de suppression.
 
-**Fonctions**:
+***Fonctions***:
 
 ngOnInit:Cette fonction est appelée lors de l'initialisation du composant. Elle charge MathJax pour le rendu des équations et récupère les équations stockées dans Firestore.
 
